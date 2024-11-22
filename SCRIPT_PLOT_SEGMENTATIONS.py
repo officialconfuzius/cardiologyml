@@ -6,6 +6,7 @@
 # 3. Working directory: [The path to the directory where the file you're currently working on resides.]
 
 import glob
+from path import DATA_PATH
 #%% HYBRID-ANALYSIS
 VERBOSE = True
 SHOW_FIGURES = True
@@ -18,7 +19,7 @@ import warnings
 warnings.filterwarnings('ignore')
 
 #%% PATHS
-segmentation_database_path = '../SegmentationsPablo/'
+segmentation_database_path = DATA_PATH
 #%% IMPORTS
 from functions.importOBJ_functions import *
 # atrial_areas = ['LAA', 'LSPV', 'LIPV', 'RIPV', 'RSPV', 'PW', 'AR', 'AW', 'AFL', 'AS', 'LW', 'MV']
