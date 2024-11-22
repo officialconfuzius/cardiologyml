@@ -1,3 +1,4 @@
 myenv
 out
-path
+path.py
+__pycache__/

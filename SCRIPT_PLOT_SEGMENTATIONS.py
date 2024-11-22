@@ -6,7 +6,7 @@
 # 3. Working directory: [The path to the directory where the file you're currently working on resides.]
 
 import glob
-from path import DATA_PATH
+from cardiologyml.path import DATA_PATH
 #%% HYBRID-ANALYSIS
 VERBOSE = True
 SHOW_FIGURES = True
