@@ -11,4 +11,5 @@ DATA_PATH = '../SegmentationsPablo/'
 -----path.py-----
 
 'path.py' will be automatically ignored when pushing, since it is only valid for local development.
-3. Run 'python3 SCRIPT_PLOT_SEGMENTATIONS.py'
+
+2. Run 'python3 SCRIPT_PLOT_SEGMENTATIONS.py'
