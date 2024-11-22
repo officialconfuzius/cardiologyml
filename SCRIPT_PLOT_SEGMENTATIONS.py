@@ -6,7 +6,7 @@
 # 3. Working directory: [The path to the directory where the file you're currently working on resides.]
 
 import glob
-from cardiologyml.path import DATA_PATH
+from path import DATA_PATH
 #%% HYBRID-ANALYSIS
 VERBOSE = True
 SHOW_FIGURES = True
@@ -23,12 +23,13 @@ segmentation_database_path = DATA_PATH
 #%% IMPORTS
 from functions.importOBJ_functions import *
 # atrial_areas = ['LAA', 'LSPV', 'LIPV', 'RIPV', 'RSPV', 'PW', 'AR', 'AW', 'AFL', 'AS', 'LW', 'MV']
-
+print(segmentation_database_path)
 #%% GET SEGMENTATION FILES TO REVIEW
 segmentation_files = sorted(glob.glob(segmentation_database_path + '*.obj'))
 # segmentation_files.reverse()
-for s, segmentation_file_path in enumerate(segmentation_files):
 
+for s, segmentation_file_path in enumerate(segmentation_files):
+    
     segmentation_file = segmentation_file_path.split('/')[-1]
     aux_print = '  - Segmentation for ' + segmentation_file
     print(aux_print)

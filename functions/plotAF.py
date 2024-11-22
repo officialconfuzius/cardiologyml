@@ -1476,7 +1476,7 @@ def plotAblationOnMesh(VerticesA, FacesA, AblationPoints, figure_title='', Ablat
         )
     fig.update_layout(title_text=figure_title, title_x=0.5)
     fig.show()
-
+    
     if save_figure and save_figure_path != '':
         fig.write_html(save_figure_path)
 
