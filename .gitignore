@@ -2,3 +2,4 @@ myenv
 out
 path.py
 __pycache__/
+.DS_Store
