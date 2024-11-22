@@ -18,8 +18,8 @@ def normalize_3d_image(image:np.array) -> np.array:
     
     return normalized_image
 
-#normalize the points s.t. they fit in a unit cube, mean = 0 stddev = 1; values are in range [-1,1]
-def normalize_to_unit_cube(points:np.array) -> np.array:
+#normalize the points s.t. they fit in a cube, mean = 0 stddev = 1; values are in range [-1,1]
+def normalize_to_cube(points:np.array) -> np.array:
     # Ensure the points are a numpy array
     points = np.asarray(points)
     
@@ -77,8 +77,7 @@ if __name__ == "__main__":
     visualize_normalized_image(normalized_image,scale=[-5,5])
     print("END OF NORMALIZATION")
     print("NORMALIZATION INTO UNIT CUBE")
-    image = np.load(DATA_PATH + npy_vertices_files[0])
-    normalized_image = normalize_to_unit_cube(image)
+    normalized_image = normalize_to_cube(image)
     print(image)
     print(normalized_image)
     print("min value after normalizing")
