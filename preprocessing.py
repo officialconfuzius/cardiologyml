@@ -1,22 +1,7 @@
 import numpy as np
 from path import DATA_PATH
-from analyze_data import npy_faces_files, npy_groups_files, npy_vertices_files
+from analyze_data import npy_vertices_files
 import matplotlib.pyplot as plt
-
-
-#normalize the image s.t. the points are normally distributed
-def normalize_3d_image(image:np.array) -> np.array:
-    # Ensure the image is a numpy array
-    image = np.asarray(image)
-    
-    # Compute the mean and standard deviation of the image
-    mean = np.mean(image)
-    std = np.std(image)
-    
-    # Normalize the image
-    normalized_image = (image - mean) / std
-    
-    return normalized_image
 
 #normalize the points s.t. they fit in a cube, mean = 0 stddev = 1; values are in range [-1,1]
 def normalize_to_cube(points:np.array) -> np.array:
@@ -68,15 +53,9 @@ def visualize_normalized_image(normalized_image:np.array, scale:list) -> None:
     plt.show()
 
 if __name__ == "__main__":
-    #example usage
-    print("NAIVE NORMALIZATION APPROACH")
+    # Example usage
     image = np.load(DATA_PATH + npy_vertices_files[0])
-    normalized_image = normalize_3d_image(image)
-    print(image)
-    print(normalized_image)
-    visualize_normalized_image(normalized_image,scale=[-5,5])
-    print("END OF NORMALIZATION")
-    print("NORMALIZATION INTO UNIT CUBE")
+    print("NORMALIZATION INTO CUBE")
     normalized_image = normalize_to_cube(image)
     print(image)
     print(normalized_image)

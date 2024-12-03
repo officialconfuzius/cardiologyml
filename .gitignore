@@ -1,5 +1,6 @@
 myenv
 out
 path.py
+*.pth
 __pycache__/
 .DS_Store
