@@ -24,6 +24,7 @@ __pycache__/
 
 # Miscellaneous
 .history/
+.history
 
 # Test files
 test.py
