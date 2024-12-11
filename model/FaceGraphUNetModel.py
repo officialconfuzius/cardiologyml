@@ -35,7 +35,7 @@ def mesh_to_vertex_graph(mesh):
     # Create edges based on vertex adjacency (vertices sharing an edge in any face)
     edges = []
     for face in mesh.faces:
-        num_vertices_in_face = len(face)
+        num_vertices_in_face = len(face) # 3
         for i in range(num_vertices_in_face):
             for j in range(i + 1, num_vertices_in_face):
                 # Add edge between vertex i and vertex j in this face

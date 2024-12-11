@@ -1,6 +1,6 @@
 import numpy as np
 from path import DATA_PATH
-from analyze_data import npy_vertices_files
+from analyze_data import npy_vertices_files, npy_faces_files, npy_groups_files
 import matplotlib.pyplot as plt
 
 #normalize the points s.t. they fit in a cube, mean = 0 stddev = 1; values are in range [-1,1]
@@ -55,6 +55,8 @@ def visualize_normalized_image(normalized_image:np.array, scale:list) -> None:
 if __name__ == "__main__":
     # Example usage
     image = np.load(DATA_PATH + npy_vertices_files[0])
+    faces = np.load(DATA_PATH + npy_faces_files[0])
+    segm = np.load(DATA_PATH + npy_groups_files[0])
     print("NORMALIZATION INTO CUBE")
     normalized_image = normalize_to_cube(image)
     print(image)
@@ -65,3 +67,4 @@ if __name__ == "__main__":
     print(np.max(normalized_image, axis=0)) 
     print("END OF NORMALIZATION")
     visualize_normalized_image(normalized_image,[-1,1])
+    #plotMesh(image, faces, segm, figure_title='Mesh plot', fig='', save_figure_path='', row='', col='', scene_name='', show_grid=True, hover_title='', opacity=1)

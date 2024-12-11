@@ -21,6 +21,7 @@ if __name__ == "__main__":
     model = FaceGraphUNetModel(in_channels=3, hidden_channels=32, out_channels=12, depth=3)  # 3D centroid input
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    # Dice coefficient, Jaccard index => image error metrics
     criterion = torch.nn.CrossEntropyLoss()
 
     #Training loop
