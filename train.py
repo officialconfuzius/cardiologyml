@@ -3,13 +3,20 @@ from model.MeshObject import *
 from model.MeshDataset import CustomMeshDataset
 from torch.utils.data import DataLoader
 from tqdm import tqdm
+from pathlib import Path
+import pickle
 
 if __name__ == "__main__":
     # Set some parameters
     batch_size = 4
-    learning_rate = 0.001
-    num_epochs = 20
+    learning_rate = 0.01
+    num_epochs = 10
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # Define the output directory
+    script_path = Path(__file__).resolve().parent
+    model_file = script_path / 'trained_model.pth'
+    loss_file = script_path / 'epoch_losses.pkl'
 
     # Load the data from the directory
     dataset = CustomMeshDataset()
@@ -21,11 +28,11 @@ if __name__ == "__main__":
     model = FaceGraphUNetModel(in_channels=3, hidden_channels=32, out_channels=12, depth=3)  # 3D centroid input
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
-    # Dice coefficient, Jaccard index => image error metrics
     criterion = torch.nn.CrossEntropyLoss()
 
-    #Training loop
+    # Training loop
     model.train()
+    epoch_losses = []
     for epoch in range(num_epochs):
         total_loss = 0
         for batch in tqdm(dataloader, desc=f"Epoch {epoch + 1}/{num_epochs}"):
@@ -56,8 +63,14 @@ if __name__ == "__main__":
         
         # Average loss for the epoch
         avg_loss = total_loss / len(dataloader)
+        epoch_losses.append(avg_loss)
         print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {avg_loss:.4f}")
 
     # Save the model
-    torch.save(model.state_dict(), 'trained_model.pth')
-    print("Model saved to 'trained_model.pth'")
+    torch.save(model.state_dict(), model_file)
+    print(f"Model saved to '{model_file}'")
+
+    # Save the epoch losses to a file
+    with open(loss_file, 'wb') as f:
+        pickle.dump(epoch_losses, f)
+    print(f"Losses saved to '{loss_file}'")

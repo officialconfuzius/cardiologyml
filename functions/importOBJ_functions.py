@@ -65,7 +65,7 @@ def vertex_groups(groups, vertex, face_loc):
             v_groups = np.append(v_groups, aux_group)
     return v_groups
 
-def importOBJ(segmentation_file_path, variables_path, SAVE_FILES = True):
+def importOBJ(segmentation_file_path, variables_path, SAVE_FILES = True, OVERWRITE_MESH_FILES = False):
     start_time = time.time()
     # Check .obj file
     print('---> Looking for OBJ file')
