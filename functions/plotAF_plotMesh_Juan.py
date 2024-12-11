@@ -96,8 +96,7 @@ def plotMesh_Juan(vertices, triangles, triangles_color, clim_limits=[0, 0], inte
                 zerolinecolor="white", ), )
         )
 
-    #uncomment to show rendered data in browser
-    #fig.show(renderer='browser')
+    # fig.show(renderer='browser')
 
     if save_images & (save_figure_path != ''):
         fig.write_html(save_figure_path)

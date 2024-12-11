@@ -1,0 +1,16 @@
+numpy
+scipy
+pandas
+scikit-learn
+tqdm
+matplotlib
+plotly
+chart-studio
+vtk
+statsmodels
+torch
+torch-scatter
+torch-sparse
+torch-cluster
+torch-spline-conv
+torch-geometric

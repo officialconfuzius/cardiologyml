@@ -1,4 +1,33 @@
-myenv
-out
-path.py
+# Virtual environment folders
+.venv/
+myenv/
+
+# Output directories
+output/
+out/
+
+# Ignore the SegmentationsPablo folder
+SegmentationsPablo/
+
+# Custom configuration paths
+# path.py
+
+# Python-specific files
+*.pyc
 __pycache__/
+
+# IDE/editor-specific files
+.vscode/
+
+# Operating system generated files
+.DS_Store
+
+# Miscellaneous
+.history/
+.history
+
+# Test files
+test.py
+
+# VTK folder (if it contains generated or unnecessary data)
+vtk/
