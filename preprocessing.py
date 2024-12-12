@@ -12,6 +12,8 @@ def normalize_to_cube(points: np.array) -> np.array:
     min_vals = np.min(points, axis=0)
     max_vals = np.max(points, axis=0)
     
+    print(min_vals)
+    
     # Compute the size of the bounding box along each axis
     box_size = max_vals - min_vals
     
@@ -55,7 +57,7 @@ def visualize_normalized_image(normalized_image: np.array, scale: list) -> None:
 if __name__ == "__main__":
     # Example usage
     # Construct the full path to the .npy file
-    npy_file_path = DATA_PATH / npy_vertices_files[0]
+    npy_file_path = DATA_PATH + "/" + npy_vertices_files[0]
     image = np.load(npy_file_path)
 
     print("NORMALIZATION INTO CUBE")

@@ -9,8 +9,6 @@ chart-studio
 vtk
 statsmodels
 torch
-torch-scatter
-torch-sparse
-torch-cluster
-torch-spline-conv
 torch-geometric
+neptune
+neptune-pytorch
