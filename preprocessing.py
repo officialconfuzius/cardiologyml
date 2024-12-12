@@ -1,73 +1,95 @@
 import numpy as np
 from path import DATA_PATH
-from analyze_data import npy_vertices_files
+from analyze_data import npy_vertices_files, npy_faces_files, npy_groups_files
 import matplotlib.pyplot as plt
+from functions.plotAF_plotMesh_Juan import plotMesh_Juan
 
-# Normalize the points s.t. they fit in a cube, mean = 0 stddev = 1; values are in range [-1, 1]
-def normalize_to_cube(points: np.array) -> np.array:
-    # Ensure the points are a numpy array
-    points = np.asarray(points)
+# Normalize vertices into a cube with min coordinate target_min and max coordinate target_max
+def normalize_vertices(vertices):
+    # Calculate the mean and standard deviation
+    mean = np.mean(vertices, axis=0)
+    std = np.std(vertices, axis=0)
     
-    # Find the min and max along each axis (x, y, z)
-    min_vals = np.min(points, axis=0)
-    max_vals = np.max(points, axis=0)
-    
-    print(min_vals)
-    
-    # Compute the size of the bounding box along each axis
-    box_size = max_vals - min_vals
-    
-    # Compute the center of the bounding box
-    center = (min_vals + max_vals) / 2
-    
-    # Translate the object to the origin (move the center to [0, 0, 0])
-    points_translated = points - center
-    
-    # Scale the object to fit inside a unit cube
-    max_dim = np.max(box_size)
-    points_normalized = points_translated / max_dim
-    
-    return points_normalized
+    # Avoid division by zero if std is zero
+    std[std == 0] = 1.0
 
-# Scale defines boundaries for cube visualization e.g. [-1, 1] creates a 3x3x3 cube with each axis going from -1 to 1
-def visualize_normalized_image(normalized_image: np.array, scale: list) -> None:
-    # Visualize the normalized points in the 3D unit cube
-    fig = plt.figure(figsize=(8, 6))
-    ax = fig.add_subplot(111, projection='3d')
+    # Normalize the vertices
+    normalized_vertices = (vertices - mean) / std
+    
+    success = check_normalization(normalized_vertices)
+    
+    if success: 
+        return normalized_vertices
+    else: 
+        print("error with normalization")
+    
+def check_normalization(vertices):
+    """
+    Check if the vertices have a mean of 0 and a standard deviation of 1.
 
-    # Scatter plot of the normalized points
-    ax.scatter(normalized_image[:, 0], normalized_image[:, 1], normalized_image[:, 2], color='b', s=10)
+    Parameters:
+    - vertices: numpy array of shape (n, 3).
 
-    # Set the labels for the axes
-    ax.set_xlabel('X')
-    ax.set_ylabel('Y')
-    ax.set_zlabel('Z')
-
-    # Set the aspect ratio to be equal, so the cube proportions are correct
-    ax.set_box_aspect([1, 1, 1])
-
-    # Set the limits for the axes
-    ax.set_xlim(scale)
-    ax.set_ylim(scale)
-    ax.set_zlim(scale)
-
-    # Display the plot
-    plt.show()
+    Returns result that states whether or not the vertices have actually been normalized (i.e. mean = 0 and std = 1)
+    """
+    # Calculate mean and std
+    mean = np.mean(vertices, axis=0)
+    std = np.std(vertices, axis=0)
+    
+    # Return value
+    result = False
+    
+    # Return true if all the points in the mean and std array are normalized with a tolerance of .2
+    if np.all(np.abs(mean - 0) <= 0.2) and np.all(np.abs(std - 1) <= 0.2): 
+        result = True
+    else: 
+        print("NORMALIZATION FAILED!")
+        print("mean")
+        print(mean)
+        print("std")
+        print(std)
+    return result
 
 if __name__ == "__main__":
     # Example usage
     # Construct the full path to the .npy file
-    npy_file_path = DATA_PATH + "/" + npy_vertices_files[0]
-    image = np.load(npy_file_path)
-
-    print("NORMALIZATION INTO CUBE")
-    normalized_image = normalize_to_cube(image)
-    print(image)
-    print(normalized_image)
-    print("min value after normalizing")
-    print(np.min(normalized_image, axis=0))
-    print("max value after normalizing")
-    print(np.max(normalized_image, axis=0))
-    print("END OF NORMALIZATION")
+    npy_file_path = DATA_PATH + "/" + npy_vertices_files[10]
+    npy_face = DATA_PATH + "/" + npy_faces_files[10]
+    npy_group = DATA_PATH + "/" + npy_groups_files[10]
     
-    visualize_normalized_image(normalized_image, [-1, 1])
+    # Load data
+    vertices = np.load(npy_file_path)
+    faces = np.load(npy_face)
+    groups = np.load(npy_group)
+    
+    print("NORMALIZATION INTO CUBE")
+    normalized_vertices = normalize_vertices(vertices)
+    print("VERTICES BEFORE")
+    print(vertices)
+    print("VERTICES AFTER")
+    print(normalized_vertices)
+    print("min value after normalizing")
+    print(np.min(normalized_vertices, axis=0))
+    print("max value after normalizing")
+    print(np.max(normalized_vertices, axis=0))
+    
+    
+    # Save plot after preprocessing
+    plotMesh_Juan(
+            normalized_vertices, faces, groups,
+            clim_limits=[0, 11], intensity_mode='vertex',
+            color_scheme='Turbo',
+            representation='groups_points',
+            save_images=True, save_figure_path="out/afterpreprocessing.html"
+        )
+    
+    # Save plot before preprocessing 
+    plotMesh_Juan(
+            vertices, faces, groups,
+            clim_limits=[0, 11], intensity_mode='vertex',
+            color_scheme='Turbo',
+            representation='groups_points',
+            save_images=True, save_figure_path="out/beforepreprocessing.html"
+        )
+    
+    print("END OF NORMALIZATION")

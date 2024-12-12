@@ -13,6 +13,7 @@ SegmentationsPablo/
 *.pyc
 __pycache__/
 .DS_Store
+.neptune
 
 # IDE/editor-specific files
 .vscode/

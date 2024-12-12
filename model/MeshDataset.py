@@ -4,7 +4,7 @@ import torch
 from torch.utils.data import Dataset
 from model.FaceGraphUNetModel import mesh_to_vertex_graph
 from path import DATA_PATH
-from preprocessing import normalize_to_cube
+from preprocessing import normalize_vertices
 from model.MeshObject import MeshObject
 
 class CustomMeshDataset(Dataset):
@@ -42,7 +42,7 @@ class CustomMeshDataset(Dataset):
                 labels = np.load(labels_path)
                 
                 # Normalize the vertices
-                vertices = normalize_to_cube(vertices)
+                vertices = normalize_vertices(vertices)
                 
                 # Convert to PyTorch tensors
                 vertices = torch.tensor(vertices, dtype=torch.float32)  # Shape: (N, 3)

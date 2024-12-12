@@ -12,8 +12,8 @@ from neptune_pytorch import NeptuneLogger
 
 if __name__ == "__main__":
     # Set up neptune logging
-    NEPTUNE_API_TOKEN = os.getenv("NEPTUNE_API_TOKEN")
-    run = neptune.init_run(api_token=NEPTUNE_API_TOKEN, project="cardiologyml/Cardiology-ml")
+    nep_token = os.getenv("NEPTUNE_API_TOKEN")
+    run = neptune.init_run(api_token=nep_token, project="cardiologyml/Cardiology-ml")
     
     # Set some parameters
     batch_size = 4
@@ -70,11 +70,11 @@ if __name__ == "__main__":
     epoch_losses = []
     for epoch in range(num_epochs):
         total_loss = 0
-        for i, (x,edge_index, y) in enumerate(dataloader, 0):
+        for i, data in enumerate(dataloader, 0):
             # Move data to the appropriate device
-            vertices = x.to(device)  # (N, 3)
-            edge_index = edge_index.to(device)  # (M, K)
-            labels = y.to(device)  # (N,)
+            vertices = data['x'].to(device)  # (N, 3)
+            edge_index = data['edge_index'].to(device)  # (M, K)
+            labels = data['y'].to(device)  # (N,)
             
             # Squeeze due to added batch dimension
             if edge_index.ndim == 3: 

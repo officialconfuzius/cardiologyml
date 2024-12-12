@@ -10,5 +10,6 @@ vtk
 statsmodels
 torch
 torch-geometric
+torchviz
 neptune
 neptune-pytorch
