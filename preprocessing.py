@@ -16,6 +16,7 @@ def normalize_vertices(vertices):
     # Normalize the vertices
     normalized_vertices = (vertices - mean) / std
     
+    # Check if vertices were normalized
     success = check_normalization(normalized_vertices)
     if success: 
         return normalized_vertices
@@ -45,8 +46,6 @@ def check_normalization(vertices):
     # Return true if all the points in the mean and std array are normalized with a tolerance of .2
     if np.all(np.abs(mean - 0) <= 0.2) and np.all(np.abs(std - 1) <= 0.2): 
         success = True
-    else: 
-        success = False
         
     return success
         
