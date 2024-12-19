@@ -1,8 +1,8 @@
-numpy
+numpy==2.0.2
+pybind11>=2.12
 scipy
 pandas
 scikit-learn
-tqdm
 matplotlib
 plotly
 chart-studio
@@ -11,5 +11,6 @@ statsmodels
 torch
 torch-geometric
 torchviz
+graphviz
 neptune
 neptune-pytorch

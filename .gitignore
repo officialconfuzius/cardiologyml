@@ -34,3 +34,4 @@ vtk/
 # Output files e.g. epoch losses and models
 *.pkl
 *.pth
+*.gv

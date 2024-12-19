@@ -4,7 +4,7 @@ from analyze_data import npy_vertices_files, npy_faces_files, npy_groups_files
 import matplotlib.pyplot as plt
 from functions.plotAF_plotMesh_Juan import plotMesh_Juan
 
-# Normalize vertices into a cube with min coordinate target_min and max coordinate target_max
+# Normalize vertices using the basic normalization technique
 def normalize_vertices(vertices):
     # Calculate the mean and standard deviation
     mean = np.mean(vertices, axis=0)
@@ -17,12 +17,17 @@ def normalize_vertices(vertices):
     normalized_vertices = (vertices - mean) / std
     
     success = check_normalization(normalized_vertices)
-    
     if success: 
         return normalized_vertices
     else: 
-        print("error with normalization")
+        print("NORMALIZATION FAILED!")
+        print("mean")
+        print(mean)
+        print("std")
+        print(std)
+        raise AssertionError("Vertices are not normalized!")
     
+
 def check_normalization(vertices):
     """
     Check if the vertices have a mean of 0 and a standard deviation of 1.
@@ -30,25 +35,21 @@ def check_normalization(vertices):
     Parameters:
     - vertices: numpy array of shape (n, 3).
 
-    Returns result that states whether or not the vertices have actually been normalized (i.e. mean = 0 and std = 1)
+    Returns bool that states whether or not vertices are normalized
     """
     # Calculate mean and std
     mean = np.mean(vertices, axis=0)
     std = np.std(vertices, axis=0)
     
-    # Return value
-    result = False
-    
+    success = False
     # Return true if all the points in the mean and std array are normalized with a tolerance of .2
     if np.all(np.abs(mean - 0) <= 0.2) and np.all(np.abs(std - 1) <= 0.2): 
-        result = True
+        success = True
     else: 
-        print("NORMALIZATION FAILED!")
-        print("mean")
-        print(mean)
-        print("std")
-        print(std)
-    return result
+        success = False
+        
+    return success
+        
 
 if __name__ == "__main__":
     # Example usage
@@ -62,7 +63,7 @@ if __name__ == "__main__":
     faces = np.load(npy_face)
     groups = np.load(npy_group)
     
-    print("NORMALIZATION INTO CUBE")
+    print("NORMALIZATION")
     normalized_vertices = normalize_vertices(vertices)
     print("VERTICES BEFORE")
     print(vertices)

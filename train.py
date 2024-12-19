@@ -2,7 +2,6 @@ from model.FaceGraphUNetModel import *
 from model.MeshObject import *
 from model.MeshDataset import CustomMeshDataset
 from torch.utils.data import DataLoader
-from tqdm import tqdm
 from pathlib import Path
 import pickle
 import neptune
