@@ -13,28 +13,30 @@ if __name__ == "__main__":
     # Set up neptune logging
     nep_token = os.getenv("NEPTUNE_API_TOKEN")
     run = neptune.init_run(api_token=nep_token, project="cardiologyml/Cardiology-ml")
-    
-    # Set some parameters
-    batch_size = 4
-    learning_rate = 0.01
-    num_epochs = 10
-    in_channels = 3
-    out_channels = 12
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Define the output directory
     script_path = Path(__file__).resolve().parent
     model_file = script_path / 'trained_model.pth'
     loss_file = script_path / 'epoch_losses.pkl'
 
-    # Load the data from the directory
+    # Set parameters
+    batch_size = 4
+    learning_rate = 0.01
+    num_epochs = 50
+    hidden_channels = 32
+    depth = 3
+    in_channels = 3
+    out_channels = 12
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    # Load the data from the directory, split into train and test set in future work
     dataset = CustomMeshDataset()
-    
+
     # Instantiate the DataLoader
     dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
-
+    
     # Initialize the model
-    model = FaceGraphUNetModel(in_channels=in_channels, hidden_channels=32, out_channels=out_channels, depth=3)  # 3D centroid input
+    model = FaceGraphUNetModel(in_channels=in_channels, hidden_channels=hidden_channels, out_channels=out_channels, depth=depth)
     model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
     criterion = torch.nn.CrossEntropyLoss()
@@ -60,6 +62,7 @@ if __name__ == "__main__":
     log_freq=30
     )
 
+    # Log hyperparameters of model
     run[logger.base_namespace]["hyperparams"] = stringify_unsupported( 
         log_params
     )

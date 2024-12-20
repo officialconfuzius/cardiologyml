@@ -1,7 +1,6 @@
 import numpy as np
 from path import DATA_PATH
 from analyze_data import npy_vertices_files, npy_faces_files, npy_groups_files
-import matplotlib.pyplot as plt
 from functions.plotAF_plotMesh_Juan import plotMesh_Juan
 
 # Normalize vertices using the basic normalization technique

@@ -55,7 +55,8 @@ def mesh_to_vertex_graph(mesh):
     return {
         "x":vertex_features.clone().detach(),  # Node features (vertex coordinates)
         "edge_index":edge_index,               # Edge indices (connectivity between vertices)
-        "y":labels.clone().detach()            # Vertex labels (for segmentation)
+        "y":labels.clone().detach(),           # Vertex labels (for segmentation)
+        "faces": mesh.faces.clone().detach()   # Add faces for visualization in evaluation process
     }
 
 if __name__ == '__main__':

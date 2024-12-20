@@ -31,7 +31,5 @@ test.py
 # VTK folder (if it contains generated or unnecessary data)
 vtk/
 
-# Output files e.g. epoch losses and models
-*.pkl
-*.pth
+# Output files
 *.gv
