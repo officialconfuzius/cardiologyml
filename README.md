@@ -57,10 +57,10 @@ To set up the environment for this project, please follow the instructions below
 - Add your neptune.ai API token as an environment variable to track the training process
   ```sh
   # On Windows
-  set NEPTUNE_API_TOKEN="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2NDQzODEzMS0zOGEwLTQ4NDYtODk1Yy1jNjQxMTljMzBhMDgifQ=="
+  set NEPTUNE_API_TOKEN="API_TOKEN"
 
   # On macOS/Linux
-  export NEPTUNE_API_TOKEN="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2NDQzODEzMS0zOGEwLTQ4NDYtODk1Yy1jNjQxMTljMzBhMDgifQ=="
+  export NEPTUNE_API_TOKEN="API_TOKEN"
   ```
 ### Install Dependencies
 All necessary packages can be installed using the `requirements.txt` file. Use the following command after activating your virtual environment:
