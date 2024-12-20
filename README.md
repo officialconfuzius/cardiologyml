@@ -43,7 +43,7 @@ The project aims to advance the understanding and applicability of machine learn
 To set up the environment for this project, please follow the instructions below.
 
 ### Prerequisites
-- **Python 3.8 or above** is recommended for this project.
+- **Python 3.9.4** is recommended for this project.
 - Ensure that you have a Python environment set up. You can create a virtual environment using the following commands:
   ```sh
   # On Windows
@@ -54,7 +54,14 @@ To set up the environment for this project, please follow the instructions below
   python3 -m venv .venv
   source .venv/bin/activate
   ```
+- Add your neptune.ai API token as an environment variable to track the training process
+  ```sh
+  # On Windows
+  set NEPTUNE_API_TOKEN="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2NDQzODEzMS0zOGEwLTQ4NDYtODk1Yy1jNjQxMTljMzBhMDgifQ=="
 
+  # On macOS/Linux
+  export NEPTUNE_API_TOKEN="eyJhcGlfYWRkcmVzcyI6Imh0dHBzOi8vYXBwLm5lcHR1bmUuYWkiLCJhcGlfdXJsIjoiaHR0cHM6Ly9hcHAubmVwdHVuZS5haSIsImFwaV9rZXkiOiI2NDQzODEzMS0zOGEwLTQ4NDYtODk1Yy1jNjQxMTljMzBhMDgifQ=="
+  ```
 ### Install Dependencies
 All necessary packages can be installed using the `requirements.txt` file. Use the following command after activating your virtual environment:
 
