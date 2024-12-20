@@ -1,20 +1,11 @@
 from model.FaceGraphUNetModel import FaceGraphUNetModel
 import torch
-from torch.utils.data import DataLoader
 from functions.plotAF_plotMesh_Juan import plotMesh_Juan
-from model.MeshDataset import CustomMeshDataset
 
 
-if __name__ == '__main__':
+def evaluate_on_test_dataset(test_dataloader, path_to_model_params="trained_model.pth"):
     # Instantiate device 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    
-    # Create a dataset: 
-    # Load the data from the directory, split into train and test set in future work
-    dataset = CustomMeshDataset()
-    
-    # Instantiate the DataLoader
-    dataloader = DataLoader(dataset, batch_size=4, shuffle=True)
     
     # Instantiate parameters (use same as in training)
     in_channels = 3
@@ -24,11 +15,11 @@ if __name__ == '__main__':
     
     # Load the saved model
     model = FaceGraphUNetModel(in_channels,hidden_channels,out_channels,depth)
-    model.load_state_dict(torch.load('trained_model.pth', map_location=device))
+    model.load_state_dict(torch.load(path_to_model_params, map_location=device))
     model.eval()
 
     # Fetch a single batch from the dataloader (note: we do not separate into a train and test dataset here, this can be done in future work)
-    single_batch = next(iter(dataloader))
+    single_batch = next(iter(test_dataloader))
     # Vertices
     inputs_x = single_batch['x'].to(device)
     # Edges

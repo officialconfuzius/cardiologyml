@@ -52,7 +52,7 @@ class CustomMeshDataset(Dataset):
                 # Store the mesh data
                 mesh_object = MeshObject(vertices=vertices, faces=faces, labels=labels)
                 meshes.append(mesh_object)
-            return meshes
+        return meshes
     
     def __len__(self):
         return len(self.meshes)

@@ -1,13 +1,14 @@
 from model.FaceGraphUNetModel import *
 from model.MeshObject import *
 from model.MeshDataset import CustomMeshDataset
-from torch.utils.data import DataLoader
+from torch.utils.data import random_split
 from pathlib import Path
 import pickle
 import neptune
 from neptune.utils import stringify_unsupported
 import os
 from neptune_pytorch import NeptuneLogger
+from evaluate import evaluate_on_test_dataset
 
 if __name__ == "__main__":
     # Set up neptune logging
@@ -22,18 +23,22 @@ if __name__ == "__main__":
     # Set parameters
     batch_size = 4
     learning_rate = 0.01
-    num_epochs = 50
+    num_epochs = 10
     hidden_channels = 32
     depth = 3
     in_channels = 3
     out_channels = 12
+    train_split = 0.01
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Load the data from the directory, split into train and test set in future work
     dataset = CustomMeshDataset()
-
-    # Instantiate the DataLoader
-    dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=True)
+    print(dataset)
+    # Create train-test split
+    train_size = int(train_split * len(dataset))
+    test_size = len(dataset) - train_size 
+    # Perform split
+    train_dataset, test_dataset = random_split(dataset, [train_size, test_size])
     
     # Initialize the model
     model = FaceGraphUNetModel(in_channels=in_channels, hidden_channels=hidden_channels, out_channels=out_channels, depth=depth)
@@ -72,7 +77,7 @@ if __name__ == "__main__":
     epoch_losses = []
     for epoch in range(num_epochs):
         total_loss = 0
-        for i, data in enumerate(dataloader, 0):
+        for i, data in enumerate(train_dataset, 0):
             # Move data to the appropriate device
             vertices = data['x'].to(device)  # (N, 3)
             edge_index = data['edge_index'].to(device)  # (M, K)
@@ -103,7 +108,7 @@ if __name__ == "__main__":
             total_loss += loss.item()
         
         # Average loss for the epoch
-        avg_loss = total_loss / len(dataloader)
+        avg_loss = total_loss / len(train_dataset)
         epoch_losses.append(avg_loss)
         print(f"Epoch [{epoch + 1}/{num_epochs}], Loss: {avg_loss:.4f}")
         
@@ -121,3 +126,6 @@ if __name__ == "__main__":
 
     # Sync data to neptune
     run.stop()
+    
+    # Evaluate the model on a single sample, save output visualizatios to out directory
+    evaluate_on_test_dataset(test_dataset, model_file)
