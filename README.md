@@ -27,6 +27,16 @@ The main objectives include:
 
 The work is conducted as part of the **[Machine Learning in Healthcare](https://aplicaciones.uc3m.es/cpa/generaFicha?est=350&anio=2024&plan=392&asig=16803&idioma=2)** course at **[Universidad Carlos III de Madrid (UC3M)](https://www.uc3m.es/home)**, in collaboration with local hospitals.
 
+## Project Resources
+
+### Poster Presentation
+
+You can view our project's poster using the links below:
+
+- **PDF Version**: [Download Poster PDF](docs/Automatic_Atrium_Segmentation_Poster.pdf)
+- **PNG Version**:  
+  ![Poster Preview](docs/Automatic_Atrium_Segmentation_Poster_Image.png)
+
 ## Research Involvement and Contributions
 
 ### Key Tasks and Contributions
@@ -43,7 +53,7 @@ The project aims to advance the understanding and applicability of machine learn
 To set up the environment for this project, please follow the instructions below.
 
 ### Prerequisites
-- **Python 3.9.4** or below is recommended for this project (this is to enable smoother support for Visualization Toolkit (VTK), as VTK does not currently support newer Python versions).
+- **Python 3.9.4 or below** is recommended for this project (this is to enable better support for Visualization Toolkit (VTK), as VTK does not currently support newer Python versions).
 - Ensure that you have a Python environment set up. You can create a virtual environment using the following commands:
   ```sh
   # On Windows
