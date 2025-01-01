@@ -4,6 +4,12 @@
 
 **Project Title**: Automatic Atrium Segmentation with Machine Learning
 
+You can view our project's poster using the links below:
+
+- **PDF Version**: [Download Poster PDF](docs/Automatic_Atrium_Segmentation_Poster.pdf)
+- **PNG Version**:  
+  ![Poster Preview](docs/Automatic_Atrium_Segmentation_Poster_Image.png)
+
 ### Project Mentors
 - **Dr. Gonzalo Ricardo Ríos Muñoz**: Assistant Professor, Bioengineering Department, Universidad Carlos III de Madrid (UC3M)
 - **Dr. Pablo Martínez Olmos**: Associate Professor, Signal Theory and Communications Department, Universidad Carlos III de Madrid (UC3M)
@@ -26,16 +32,6 @@ The main objectives include:
 - Evaluating segmentation results by comparing predicted regions with manually annotated data.
 
 The work is conducted as part of the **[Machine Learning in Healthcare](https://aplicaciones.uc3m.es/cpa/generaFicha?est=350&anio=2024&plan=392&asig=16803&idioma=2)** course at **[Universidad Carlos III de Madrid (UC3M)](https://www.uc3m.es/home)**, in collaboration with local hospitals.
-
-## Project Resources
-
-### Poster Presentation
-
-You can view our project's poster using the links below:
-
-- **PDF Version**: [Download Poster PDF](docs/Automatic_Atrium_Segmentation_Poster.pdf)
-- **PNG Version**:  
-  ![Poster Preview](docs/Automatic_Atrium_Segmentation_Poster_Image.png)
 
 ## Research Involvement and Contributions
 
