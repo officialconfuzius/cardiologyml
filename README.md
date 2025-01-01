@@ -5,9 +5,9 @@
 **Project Title**: Automatic Atrium Segmentation with Machine Learning
 
 ### Project Mentors
-- **Dr. Gonzalo Ricardo Ríos Muñoz**: Assistant Professor, Bioengineering Department
-- **Dr. Pablo Martínez Olmos**: Associate Professor, Signal Theory and Communications Department
-- **Dr. Antonio Artés Rodríguez**: Professor, Signal Theory and Communications Department
+- **Dr. Gonzalo Ricardo Ríos Muñoz**: Assistant Professor, Bioengineering Department, Universidad Carlos III de Madrid (UC3M)
+- **Dr. Pablo Martínez Olmos**: Associate Professor, Signal Theory and Communications Department, Universidad Carlos III de Madrid (UC3M)
+- **Dr. Antonio Artés Rodríguez**: Professor, Signal Theory and Communications Department, Universidad Carlos III de Madrid (UC3M)
 
 ### Students
 - **Conrad Niewienda**
