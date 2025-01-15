@@ -1,14 +1,11 @@
-# Automatic Atrium Segmentation Project
+# Automatic Atrium Segmentation with Machine Learning
 
 ## Research Project Overview
 
-**Project Title**: Automatic Atrium Segmentation with Machine Learning
-
-You can view our project's poster using the links below:
-
-- **PDF Version**: [Download Poster PDF](docs/Automatic_Atrium_Segmentation_Poster.pdf)
-- **PNG Version**:  
+- **Project Poster**:  
   ![Poster Preview](docs/Automatic_Atrium_Segmentation_Poster_Image.png)
+- **PDF Version**: [Download Poster PDF](docs/Automatic_Atrium_Segmentation_Poster.pdf)
+- **PNG Version**: [Download Poster PNG](docs/Automatic_Atrium_Segmentation_Poster_Image.png)
 
 ### Project Mentors
 - **Dr. Gonzalo Ricardo Ríos Muñoz**: Assistant Professor, Bioengineering Department, Universidad Carlos III de Madrid (UC3M)
@@ -19,7 +16,8 @@ You can view our project's poster using the links below:
 - **Conrad Niewienda**
 - **Marcos Sanson**
 
-**Institution**: Universidad Carlos III de Madrid
+### Institution
+- **Universidad Carlos III de Madrid**
 
 ### Project Description
 This research project focuses on developing an algorithm for automatic 3D segmentation of the left atrium, particularly in patients with atrial fibrillation. The segmentation is performed on 3D meshes generated from electroanatomical mapping and other medical imaging data, such as MRI and CT scans.
@@ -46,7 +44,7 @@ The project aims to advance the understanding and applicability of machine learn
 
 ## Installation and Setup Instructions
 
-To set up the environment for this project, please follow the instructions below.
+To set up the environment for this project, please follow the instructions below:
 
 ### Prerequisites
 - **Python 3.9.4 or below** is recommended for this project (this is to enable better support for Visualization Toolkit (VTK), as VTK does not currently support newer Python versions).
@@ -142,4 +140,4 @@ PyTorch Geometric and its dependencies are critical for the graph-based deep lea
 This project is a collaborative effort involving contributions from Conrad Niewienda and Marcos Sanson, under the guidance of the project mentors.
 
 ## Contact
-If you have any questions or are interested in collaborating, please feel free to reach out through GitHub issues.
+If you have any questions or are interested in collaborating, please feel free to reach out through GitHub issues or the emails listed in the project poster.
